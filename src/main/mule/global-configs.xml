@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:x12="http://www.mulesoft.org/schema/mule/x12" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/x12 http://www.mulesoft.org/schema/mule/x12/current/mule-x12.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="95a3ef33-bdd7-4d2c-b340-823f24e11a4b" basePath="x12" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<x12:config name="X12_EDI_Inbound" doc:name="X12 EDI Config" doc:id="0a22ba52-0701-4eb5-9152-06c5b7750d2c" requireUniqueInterchanges="false" >
+		<x12:schemas >
+			<x12:schema value="/x12/004010/850.esl" />
+		</x12:schemas>
+	</x12:config>
+</mule>

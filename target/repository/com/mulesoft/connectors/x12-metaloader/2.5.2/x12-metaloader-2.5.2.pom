@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>x12-metaloader</artifactId>
+  <packaging>jar</packaging>
+  <name>Mule X12 Schema Loader and Metadata Generator</name>
+
+  <parent>
+    <groupId>com.mulesoft.connectors</groupId>
+    <artifactId>mule-x12-parent</artifactId>
+    <version>2.5.2</version>
+    <relativePath>..</relativePath>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.mule.runtime</groupId>
+      <artifactId>mule-metadata-model-api</artifactId>
+      <version>${metadataModelVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mule.runtime</groupId>
+      <artifactId>mule-metadata-model-java</artifactId>
+      <version>${metadataModelVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mule.metadata.flatfile</groupId>
+      <artifactId>schema-metadata</artifactId>
+      <version>${flatfileMetadataVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mule.edi</groupId>
+      <artifactId>edi-parser</artifactId>
+      <version>${edi-parser.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.mulesoft.connectors</groupId>
+      <artifactId>x12-parser</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.mulesoft.connectors</groupId>
+      <artifactId>x12-schemas</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mule.runtime</groupId>
+      <artifactId>mule-api</artifactId>
+      <version>${muleApiVersion}</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+
+</project>

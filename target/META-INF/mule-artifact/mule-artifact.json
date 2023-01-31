@@ -1,0 +1,29 @@
+{
+  "configs": [
+    "global-configs.xml",
+    "b2b-edi-inbound-x12-map.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "org.mule.examples:template-b2b-edi-inbound-x12-map:1.0.0",
+  "minMuleVersion": "4.3.0",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "log4j2.xml",
+        "in-purchase-order-schema.json",
+        "x12/IN-X12-version-transaction-to-applicationmessage.dwl",
+        "application-types.xml",
+        "global-configs.xml",
+        "b2b-edi-inbound-x12-map.xml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "B2BMessage": {
+        "type": "object",
+        "properties": {
+          "Header": {
+            "type": "object",
+            "properties": {
+              "MessageType": {
+                "type": "string"
+              },
+              "BusinessKey": {
+                "type": "string"
+              },
+              "SenderID": {
+                "type": "string"
+              },
+              "ReceiverID": {
+                "type": "string"
+              },
+              "MessageID": {
+                "type": "string"
+              },
+              "ReceiveDateTime": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "MessageType",
+              "BusinessKey",
+              "SenderID",
+              "ReceiverID",
+              "MessageID",
+              "ReceiveDateTime"
+            ]
+          },
+          "Data": {
+            "type": "object",
+            "properties": {
+              "PurchaseOrder": {
+                "type": "object",
+                "properties": {
+                  "POPurpose": {
+                    "type": "string"
+                  },
+                  "POType": {
+                    "type": "string"
+                  },
+                  "PONumber": {
+                    "type": "string"
+                  },
+                  "CustomerId": {
+                    "type": "string"
+                  },
+                  "CustomerName": {
+                    "type": "string"
+                  },
+				"SoldToId": {
+                    "type": "string"
+                  },
+                 "VendorRefNum": {
+                    "type": "string"
+                  },
+				"BillToCode": {
+                    "type": "string"
+                  },
+                  "BuyerName": {
+                    "type": "string"
+                  },
+                  "BuyerEmailID": {
+                    "type": "string"
+                  },
+                  "PODate": {
+                    "type": "string"
+                  },
+                  "References": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "Reference": {
+                          "type": "object",
+                          "properties": {
+                            "RefType": {
+                              "type": "string"
+                            },
+                            "RefValue": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "POLineItems": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "PurchaseOrderLineId": {
+                          "type": "string"
+                        },
+                        "LineNum": {
+                          "type": "string"
+                        },
+                        "Quantity": {
+                          "type": "string"
+                        },
+                        "UnitPrice": {
+                          "type": "string"
+                        },
+                        "ItemDescription": {
+                          "type": "string"
+                        },
+                        "SupplierItemNum": {
+                          "type": "string"
+                        },
+                        "POLineLocation": {
+                          "type": "object",
+                          "properties": {
+                            "LineLocationId": {
+                              "type": "string"
+                            },
+                            "ShipToLocation": {
+                              "type": "object",
+                              "properties": {
+                                "ShipToLocationCode": {
+                                  "type": "string"
+                                },
+                                "ShipToLocationName": {
+                                  "type": "string"
+                                },
+                                "Address": {
+                                  "type": "object",
+                                  "properties": {
+                                    "AddressLine1": {
+                                      "type": "string"
+                                    },
+                                    "AddressLine2": {
+                                      "type": "string"
+                                    },
+                                    "City": {
+                                      "type": "string"
+                                    },
+                                    "PostalCode": {
+                                      "type": "string"
+                                    },
+                                    "State": {
+                                      "type": "string"
+                                    },
+                                    "Country": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "AddressLine1",
+                                	"City",
+                                    "PostalCode",
+                                    "State"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "ShipToLocationCode",
+                              "Address"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "LineLocationId",
+                            "ShipToLocation"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "PurchaseOrderLineId",
+                        "LineNum",
+                        "Quantity",
+                       "SupplierItemNum",
+                        "POLineLocation"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "POPurpose",
+                  "POType",
+                  "PONumber",
+                  "CustomerId",
+                  "CustomerName",
+                  "PODate",
+                  "POLineItems"
+                ]
+              }
+            },
+            "required": [
+              "PurchaseOrder"
+            ]
+          }
+        },
+        "required": [
+          "Header",
+          "Data"
+        ]
+      }
+    },
+    "required": [
+      "B2BMessage"
+    ]
+  }
+}

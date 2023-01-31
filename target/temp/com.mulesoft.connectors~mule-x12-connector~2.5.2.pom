@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+    <groupId>com.mulesoft.connectors</groupId>
+    <artifactId>mule-connectivity-parent</artifactId>
+    <version>3.2.6</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <name>X12 EDI Connector</name>
+  <artifactId>mule-x12-connector</artifactId>
+  <version>2.5.2</version>
+  <packaging>mule-extension</packaging>
+
+  <properties>
+    <jdk.version>1.8</jdk.version>
+    <junit.version>4.12</junit.version>
+    <edi.parser.version>2.3.11</edi.parser.version>
+    <flatfileMetadataVersion>1.2.1</flatfileMetadataVersion>
+    <support.version>${project.version}</support.version>
+    <licensePath>LICENSE.md</licensePath>
+    <!-- runtime version to run  -->
+    <runtimeVersion>4.3.0</runtimeVersion>
+    <runtimeProduct>MULE_EE</runtimeProduct>
+    <mule.file.connector.version>1.3.3</mule.file.connector.version>
+    <mule.objectstore.connector.version>1.1.5</mule.objectstore.connector.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.mule.edi</groupId>
+      <artifactId>edi-parser</artifactId>
+      <version>${edi.parser.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mule.metadata.flatfile</groupId>
+      <artifactId>schema-metadata</artifactId>
+      <version>${flatfileMetadataVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.mulesoft.connectors</groupId>
+      <artifactId>x12-parser</artifactId>
+      <version>${support.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.mulesoft.connectors</groupId>
+      <artifactId>x12-schemas</artifactId>
+      <version>${support.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.mulesoft.connectors</groupId>
+      <artifactId>x12-metaloader</artifactId>
+      <version>${support.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.10.3</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>${maven.enforcer.version}</version>
+        <executions>
+          <execution>
+            <id>default-enforced-rules</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <banDistributionManagement />
+                <requireNoRepositories>
+                  <allowedRepositories>
+                    <!-- This is a repository provided by this pom's parent. -->
+                    <allowedRepository>mule</allowedRepository>
+                    <allowedRepository>mule-releases</allowedRepository>
+                    <allowedRepository>mule-ci-snapshots</allowedRepository>
+                  </allowedRepositories>
+                  <allowedPluginRepositories>
+                    <!-- These are repositories provided by this pom's parent. -->
+                    <allowedPluginRepository>mulesoft-plugin-releases</allowedPluginRepository>
+                    <allowedPluginRepository>mulesoft-plugin-snapshots</allowedPluginRepository>
+                  </allowedPluginRepositories>
+                </requireNoRepositories>
+              </rules>
+              <fail>true</fail>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- munit plugins -->
+      <plugin>
+        <groupId>com.mulesoft.munit</groupId>
+        <artifactId>munit-extensions-maven-plugin</artifactId>
+        <version>${munit.extensions.maven.plugin.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.mule.connectors</groupId>
+            <artifactId>mule-file-connector</artifactId>
+            <version>${mule.file.connector.version}</version>
+            <classifier>mule-plugin</classifier>
+          </dependency>
+          <dependency>
+            <groupId>org.mule.connectors</groupId>
+            <artifactId>mule-objectstore-connector</artifactId>
+            <version>${mule.objectstore.connector.version}</version>
+            <classifier>mule-plugin</classifier>
+          </dependency>
+        </dependencies>
+      </plugin>
+   </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>mule-releases</id>
+      <name>Nexus Public Releases</name>
+      <url>https://repository-master.mulesoft.org/nexus/content/repositories/releases/</url>
+    </repository>
+    <repository>
+      <id>mule-ci-snapshots</id>
+      <name>Nexus CI Snapshots</name>
+      <url>https://repository-master.mulesoft.org/nexus/content/repositories/ci-snapshots/</url>
+    </repository>
+  </repositories>
+  
+</project>

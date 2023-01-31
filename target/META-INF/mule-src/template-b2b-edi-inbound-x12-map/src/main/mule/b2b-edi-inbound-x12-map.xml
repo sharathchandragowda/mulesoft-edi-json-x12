@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:shopify="http://www.mulesoft.org/schema/mule/shopify" xmlns:x12="http://www.mulesoft.org/schema/mule/x12"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/x12 http://www.mulesoft.org/schema/mule/x12/current/mule-x12.xsd
+http://www.mulesoft.org/schema/mule/shopify http://www.mulesoft.org/schema/mule/shopify/current/mule-shopify.xsd">
+	<shopify:config name="Shopify_Connector_Config" doc:name="Shopify Connector Config" doc:id="739520cf-5b86-42f3-b81e-9a75c821de49" >
+		<shopify:basic-auth-connection username="3e88ebf5d73197c34123d09f51a7d94f" password="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" baseUri="https://sfoms.myshopify.com" />
+	</shopify:config>
+	<flow name="b2b-edi-inbound-x12-map-templateFlow" doc:id="7e0e127e-ad13-4573-8375-154e6ded1a14" >
+		<http:listener doc:name="Listener" doc:id="ce3f50ef-9ccc-4424-bb16-71ca73001d1a" config-ref="HTTP_Listener_config" path="/in"/>
+		<logger level="INFO" doc:name="Logger" doc:id="71b72178-f401-4e9d-aeaa-a9d1b59fc800" message="Received inbound EDI payload: #[payload]"/>
+		<x12:read doc:name="Read" doc:id="5091ea63-0c7b-4cf3-9776-57c00889a2ec" config-ref="X12_EDI_Inbound"/>
+		<ee:transform doc:name="Transform Message" doc:id="76585cda-cdd7-4e4e-a550-ad7fb2c4fc53" >
+			<ee:message >
+				<ee:set-payload resource="x12/IN-X12-version-transaction-to-applicationmessage.dwl" />
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="52f85410-9d3f-47d8-aa15-fc1dd8b2878c" message="Translated EDI X12 transaction to application message format"/>
+	</flow>
+</mule>
